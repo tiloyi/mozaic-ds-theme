@@ -1,0 +1,41 @@
+@import "@angular/material/theming";
+@import "./mozaic-ds-palettes";
+// // Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$mozaic-ds-theme: mat-light-theme(
+  (
+    color: (
+      // required by Material Theming
+      primary: $mozaic-ds-palette-primary,
+      accent: $mozaic-ds-palette-accent,
+      warn: $mozaic-ds-palette-danger,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($mozaic-ds-theme);
+
+// Fonts
+//
+$mozaic-ds-typography: mat-typography-config(
+  $font-family: "LeroyMerlin, sans-serif",
+  $headline: mat-typography-level($size-font-10, $size-line-10-m, 400),
+  $body-1: mat-typography-level($size-font-05, $size-line-05-m, 400),
+  $body-2: mat-typography-level($size-font-05, $size-line-05-m, 600),
+  $button: mat-typography-level($size-font-05, 1.375, 600),
+  $input: mat-typography-level($size-font-05, 1.125, 400),
+);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+//
+@include angular-material-typography($mozaic-ds-typography);

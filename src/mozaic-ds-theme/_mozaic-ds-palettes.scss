@@ -1,0 +1,96 @@
+@import "settings-tools/_all-settings";
+
+$font-path: "/assets/web-fonts";
+
+@include import-font-families();
+
+@function mds-remove-quotes($map-tokens) {
+  $map: ();
+
+  @each $key, $value in $map-tokens {
+    $i: index($map-tokens, $key $value);
+
+    $key: 100 * $i;
+
+    $map: map-merge(
+      $map,
+      (
+        $key: $value,
+      )
+    );
+  }
+
+  @return $map;
+}
+
+// Mozaic Colors Maps
+//
+$mozaic-ds-tokens-color: map-get($tokens, "color");
+$mozaic-ds-colors-primary: mds-remove-quotes(
+  map-get($mozaic-ds-tokens-color, "primary-01")
+);
+$mozaic-ds-colors-primary-02: mds-remove-quotes(
+  map-get($mozaic-ds-tokens-color, "primary-02")
+);
+$mozaic-ds-colors-grey: mds-remove-quotes(
+  map-get($mozaic-ds-tokens-color, "grey")
+);
+$mozaic-ds-colors-danger: mds-remove-quotes(
+  map-get($mozaic-ds-tokens-color, "danger")
+);
+$mozaic-ds-colors-success: mds-remove-quotes(
+  map-get($mozaic-ds-tokens-color, "success")
+);
+$mozaic-ds-colors-contrast: (
+  contrast: (
+    50: $color-font-darker,
+    100: $color-font-darker,
+    200: $color-font-darker,
+    300: $color-font-darker,
+    400: $color-font-darker,
+    500: $color-font-lightest,
+    600: $color-font-lightest,
+    700: $color-font-lightest,
+    800: $color-font-lightest,
+    900: $color-font-lightest,
+    A100: $color-font-darker,
+    A200: $color-font-lightest,
+    A400: $color-font-lightest,
+    A700: $color-font-lightest,
+  ),
+);
+
+// Palettes
+//
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Palette - Primary
+$mozaic-ds-palette-primary: mat-palette(
+  map-merge($mozaic-ds-colors-primary, $mozaic-ds-colors-contrast)
+);
+
+// Palette - Accent
+// In Leroy Merlin case the Accents colors are the same as the primary: http://mozaic.adeo.cloud/Foundations/Colors/
+$mozaic-ds-palette-accent: $mozaic-ds-palette-primary;
+
+// Palette - Primary 02
+$mozaic-ds-palette-primary-02: mat-palette(
+  map-merge($mozaic-ds-colors-primary-02, $mozaic-ds-colors-contrast)
+);
+
+// Palette - Neutral
+$mozaic-ds-palette-neutral: mat-palette(
+  map-merge($mozaic-ds-colors-grey, $mozaic-ds-colors-contrast)
+);
+
+// Palette - Danger
+$mozaic-ds-palette-danger: mat-palette(
+  map-merge($mozaic-ds-colors-danger, $mozaic-ds-colors-contrast)
+);
+
+// Palette - Success
+$mozaic-ds-palette-success: mat-palette(
+  map-merge($mozaic-ds-colors-success, $mozaic-ds-colors-contrast)
+);

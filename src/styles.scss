@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "settings-tools/_all-settings";
+@import "components/_c.button";
+
 html,
 body {
   height: 100%;

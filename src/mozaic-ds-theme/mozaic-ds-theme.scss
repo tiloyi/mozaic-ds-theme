@@ -39,3 +39,12 @@ $mozaic-ds-typography: mat-typography-config(
 // Override typography for all Angular Material, including mat-base-typography and all components.
 //
 @include angular-material-typography($mozaic-ds-typography);
+
+// Custon Card Elevation
+@mixin moz-card-elevation($color: $mat-elevation-color, $opacity: 0.25) {
+  box-shadow: 0 4px 4px rgba($color, $opacity);
+}
+
+.card-container {
+  @include moz-card-elevation();
+}
